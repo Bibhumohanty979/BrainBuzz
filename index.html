@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BrainBuzz | Interactive Quiz Application</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navbar">
+
+        <a href="#" class="logo" id="logoBtn">
+            <div class="logo-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div class="logo-text">
+                <strong>BrainBuzz</strong>
+                <span>Interactive Quiz</span>
+            </div>
+        </a>
+
+        <div class="nav-actions">
+
+            <div class="high-score-box">
+                <i class="fa-solid fa-trophy"></i>
+                <span>Best Score</span>
+                <strong id="highScore">0</strong>
+            </div>
+
+            <button
+                class="icon-btn"
+                id="themeBtn"
+                title="Toggle dark mode"
+            >
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+
+        </div>
+
+    </nav>
+</header>
+
+
+<main class="main-container">
+
+    <!-- HOME SCREEN -->
+    <section class="screen home-screen" id="homeScreen">
+
+        <div class="hero">
+
+            <div class="hero-badge">
+                <i class="fa-solid fa-bolt"></i>
+                TEST YOUR KNOWLEDGE
+            </div>
+
+            <h1>
+                Challenge your mind with
+                <span>BrainBuzz.</span>
+            </h1>
+
+            <p>
+                Choose a category, select your difficulty and test
+                your knowledge with fun and interactive quizzes.
+            </p>
+
+            <div class="stats-row">
+
+                <div class="stat">
+                    <strong>4</strong>
+                    <span>Categories</span>
+                </div>
+
+                <div class="stat">
+                    <strong>10</strong>
+                    <span>Questions</span>
+                </div>
+
+                <div class="stat">
+                    <strong>3</strong>
+                    <span>Levels</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="setup-card">
+
+            <div class="section-heading">
+                <span>GET STARTED</span>
+                <h2>Choose a Quiz Category</h2>
+                <p>Select the topic you want to challenge yourself with.</p>
+            </div>
+
+
+            <div class="category-grid">
+
+                <button class="category-card active" data-category="general">
+                    <div class="category-icon general">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+
+                    <strong>General Knowledge</strong>
+                    <span>Explore facts & trivia</span>
+                </button>
+
+
+                <button class="category-card" data-category="science">
+                    <div class="category-icon science">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+
+                    <strong>Science</strong>
+                    <span>Discover the world of science</span>
+                </button>
+
+
+                <button class="category-card" data-category="technology">
+                    <div class="category-icon technology">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+
+                    <strong>Technology</strong>
+                    <span>Computers & technology</span>
+                </button>
+
+
+                <button class="category-card" data-category="geography">
+                    <div class="category-icon geography">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+
+                    <strong>Geography</strong>
+                    <span>Countries, places & Earth</span>
+                </button>
+
+            </div>
+
+
+            <div class="difficulty-section">
+
+                <label>Difficulty Level</label>
+
+                <div class="difficulty-buttons">
+
+                    <button class="difficulty-btn" data-level="easy">
+                        Easy
+                    </button>
+
+                    <button class="difficulty-btn active" data-level="medium">
+                        Medium
+                    </button>
+
+                    <button class="difficulty-btn" data-level="hard">
+                        Hard
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button class="start-btn" id="startQuizBtn">
+                Start Quiz
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ SCREEN -->
+    <section class="screen quiz-screen hidden" id="quizScreen">
+
+        <div class="quiz-topbar">
+
+            <button class="quit-btn" id="quitBtn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Quit Quiz
+            </button>
+
+            <div class="quiz-info">
+                <span id="quizCategory">General Knowledge</span>
+
+                <div class="timer" id="timerBox">
+                    <i class="fa-regular fa-clock"></i>
+                    <strong id="timer">20</strong>s
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="progress-section">
+
+            <div class="progress-info">
+                <span>
+                    Question
+                    <strong id="questionNumber">1</strong>
+                    of
+                    <strong id="totalQuestions">10</strong>
+                </span>
+
+                <span>
+                    Score:
+                    <strong id="liveScore">0</strong>
+                </span>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+        </div>
+
+
+        <div class="question-card">
+
+            <div class="question-label">
+                QUESTION
+                <span id="difficultyBadge">MEDIUM</span>
+            </div>
+
+            <h2 id="questionText">
+                Question will appear here.
+            </h2>
+
+
+            <div class="answers" id="answersContainer">
+                <!-- Answers generated by JavaScript -->
+            </div>
+
+
+            <div class="feedback hidden" id="feedbackBox">
+
+                <div class="feedback-icon" id="feedbackIcon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <div>
+                    <strong id="feedbackTitle">Correct!</strong>
+                    <p id="feedbackText">Great answer.</p>
+                </div>
+
+            </div>
+
+
+            <button class="next-btn hidden" id="nextBtn">
+                Next Question
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT SCREEN -->
+    <section class="screen result-screen hidden" id="resultScreen">
+
+        <div class="result-card">
+
+            <div class="result-icon" id="resultIcon">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+
+            <span class="result-label">QUIZ COMPLETED</span>
+
+            <h1 id="resultTitle">Great Job!</h1>
+
+            <p id="resultMessage">
+                You completed the BrainBuzz challenge.
+            </p>
+
+
+            <div class="score-circle">
+                <div>
+                    <strong id="finalPercentage">0%</strong>
+                    <span>Your Score</span>
+                </div>
+            </div>
+
+
+            <div class="result-stats">
+
+                <div>
+                    <i class="fa-solid fa-circle-check correct-stat"></i>
+                    <strong id="correctAnswers">0</strong>
+                    <span>Correct</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-circle-xmark wrong-stat"></i>
+                    <strong id="wrongAnswers">0</strong>
+                    <span>Wrong</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-star score-stat"></i>
+                    <strong id="finalScore">0</strong>
+                    <span>Points</span>
+                </div>
+
+            </div>
+
+
+            <div class="result-actions">
+
+                <button class="secondary-btn" id="reviewBtn">
+                    <i class="fa-regular fa-eye"></i>
+                    Review Answers
+                </button>
+
+                <button class="primary-btn" id="playAgainBtn">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    Play Again
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REVIEW SCREEN -->
+    <section class="screen review-screen hidden" id="reviewScreen">
+
+        <div class="review-header">
+
+            <div>
+                <span class="section-label">ANSWER REVIEW</span>
+                <h1>Review Your Answers</h1>
+                <p>See which questions you answered correctly.</p>
+            </div>
+
+            <button class="primary-btn" id="reviewDoneBtn">
+                Done
+            </button>
+
+        </div>
+
+        <div class="review-list" id="reviewList">
+            <!-- Generated by JavaScript -->
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div>
+        <div class="footer-logo">
+            <i class="fa-solid fa-brain"></i>
+            BrainBuzz
+        </div>
+
+        <p>
+            Learn, challenge yourself and have fun with interactive quizzes.
+        </p>
+    </div>
+
+    <span>
+        © <span id="currentYear"></span> BrainBuzz
+    </span>
+
+</footer>
+
+
+<div class="toast" id="toast">
+
+    <div class="toast-icon" id="toastIcon">
+        <i class="fa-solid fa-check"></i>
+    </div>
+
+    <div>
+        <strong id="toastTitle">Success</strong>
+        <p id="toastMessage">Quiz started.</p>
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
